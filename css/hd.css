@@ -1,0 +1,74 @@
+.reveal p.talk-repo {
+    margin-top: 5em;
+}
+
+.reveal table {
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-border-horizontal-spacing: 0px;
+    border-spacing: 0px;
+}
+
+.reveal table.large-table {
+    font-size: 10pt;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+
+.reveal table td {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0.5em;
+}
+
+.reveal td, .reveal th  {
+    border-top: 1px solid #EEE !important;
+}
+
+.reveal table.large-table td {
+    padding-left: 0em;
+    padding-right: 0em;
+}
+
+.reveal pre.large {
+    font-size: 11pt;
+    padding-left: 0em;
+    padding-right: 0em;
+    margin: 0px;
+    width: 100%;
+}
+
+dl.table-display
+{
+        /* float: left; */
+        width: 100%;
+        /* width: 520px; */
+        margin: 1em 0;
+        padding: 0;
+        border-bottom: 1px solid #999;
+}
+
+.table-display dt
+{
+        clear: left;
+        float: left;
+        width: 25%;
+        margin: 0;
+        padding: 5px;
+        border-top: 1px solid #999;
+        font-weight: bold;
+}
+
+.table-display dd
+{
+        float: left;
+        /* width: 300px; */
+        width: 70%;
+        margin: 0;
+        padding: 5px;
+        border-top: 1px solid #999;
+}
+
+.reveal section img {
+    border: 0;
+}

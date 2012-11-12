@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Clojure Debuggers (in emacs)</title>
+
+    <meta name="description"
+          content="Using Ritz debuggers in emacs" />
+    <meta name="author" content="Hugo Duncan" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/default.css" id="theme" />
+    <link rel="stylesheet" href="css/hd.css" />
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" />
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print" />' );
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!--
+With the recent introduction of nREPL , there is hope that many development
+environments for clojure can re-use nREPL server middleware.
+
+Ritz started as a swank backend for the SLIME environment in Emacs, but has now
+grown to support the nREPL protocol, and provide a debugger for nrepl.el. It is
+becoming a library that can provide common operations for all nREPL based
+clojure development environments.
+
+In this talk we will show how to install and use ritz with nrepl.el to work with
+stack traces, whether at an exception or a breakpoint. We will demonstrate how
+to inspect locals in a stack frames, to evaluate expressions in the context of a
+stack frame, to jump to the source of a frame (clojure or java), and to
+disassemble a frame's code.
+    -->
+
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h1>Clojure Debuggers</h1>
+          <h3>Using Ritz to debug Clojure in Emacs</h3>
+          <p>
+            <small><a href="http://hugoduncan.org">Hugo Duncan</a> /
+            <a href="http://twitter.com/hugoduncan">@hugoduncan</a></small>
+          </p>
+
+          <p class="talk-repo">
+            <a href="https://github.com/hugoduncan/ritz-conj">
+            https://github.com/hugoduncan/ritz-conj</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>History</h2>
+
+          <table>
+            <tr>
+              <th width="30%"><a href="https://github.com/GeorgeJahad/debug-repl">debug-repl</a></th>
+              <td>George Jahad / @georgejahad (with an insight by Alex Osborne @atosborne).</td>
+            </tr>
+
+            <tr>
+              <th><a href="https://github.com/technomancy/swank-clojure">swank-clojure</a></th>
+              <td>Phil Hagelburg / @technomancy</td>
+            </tr>
+
+            <tr>
+              <th><a href="https://github.com/GeorgeJahad/cdt">CDT</a></th>
+              <td>George Jahad / @georgejahad</td>
+            </tr>
+
+          </table>
+          <p>Started Ritz to provide Clojure debugging in SLIME via SLDB</p>
+
+
+
+          <aside class="notes">
+            George started the ball rolling with debug-repl. This was based on
+            the insight that we could use clojure's symbol table to look up
+            local variables. This led to the &env pseudo argument being added to
+            macros.  Very simple, but only works for a single stack frame.
+
+            I integrated <code>debug-repl</code> into <code>swank-clojure</code>
+            as <code>swank-break</code>. Again simple, but required modifying
+            your source code.
+
+            George started work on CDT, a debugger library based on the JVM
+            platform debugger - the same library used by eclipse, netbeans,
+            etc. Provided commands similar to GDB. Later integrated into
+            swank-clojure.
+
+            At the same time, I was working on what became Ritz, which provided
+            a SLDB debugger for clojure in SLIME.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h2>nREPL</h2>
+
+            <p><a href="https://github.com/clojure/tools.nrepl">https://github.com/clojure/tools.nrepl</a></p>
+            <img src="nrepl.png" alt="nREPL"/>
+
+            <ul>
+              <li>A network protocol (uses bencode)</li>
+              <li>A middleware stack</li>
+            </ul>
+            <p>Driven by Chas Emerick / @cemerick </p>
+            <aside class="notes">
+              Connects REPL UI with user's clojure process.
+
+              nREPL aims to be useable by non-lisp clients.
+              SWANK protocol deemed undocumented, too lisp centric.
+
+              The protocol allows simple remote execution via messages.
+
+              The middlware framework aims to allow "ops" with alternative
+              implementations. Could be for the same target, or for different
+              targets, eg. clj and cljs.
+            </aside>
+          </section>
+
+          <section>
+            <h3>reply</h3>
+            <p>Colin Jones @trptcolin
+            <a href="https://github.com/trptcolin/reply">https://github.com/trptcolin/reply</a>
+            Support built into <code>leiningen</code>.
+            </p>
+
+            <h3>CounterClockWise</h3>
+            <p>Laurent Petit @petitlaurent
+            <a href="http://code.google.com/p/counterclockwise/wiki/Documentation">
+            http://code.google.com/p/counterclockwise</a>.
+            Provides Clojure support in eclipse.
+            </p>
+
+            <h3>VimClojure</h3>
+            <p>Meikel Brandmeyer @kotarak
+            <a href="https://bitbucket.org/kotarak/vimclojure">VimClojure</a>.
+            Provides Clojure support in <code>vim</code>. Support for nREPL in progress.</p>
+          </section>
+          <aside class="notes">
+            Probably other clients too. e.g. There was an OCAML client library
+            for an early version of nRPEL.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h2>nrepl.el</h2>
+            <p>
+              nrepl.el is an Emacs client for the nREPL protocol. Developped by
+              King Tim and a large number of contributors.
+            </p>
+            <p><a href="https://github.com/kingtim/nrepl.el">
+            https://github.com/kingtim/nrepl.el</a></p>
+            <p>
+              Promises to be the Emacs client for clojure, unfettered by support
+              of any other lisp.
+            </p>
+
+            <aside class="notes">
+              Started by Phil Hagelburg.  Tim picked it up and provided much of
+              the implementation.  Very active project on GitHub.
+
+              For us, by us.
+
+              SLIME has a long history, and is very succesful, so nrepl.el has
+              some catching up to do, but it is getting there.
+            </aside>
+          </section>
+
+          <section>
+            <h2>Install nrepl.el</h2>
+            <p>
+              nrepl.el is available as an Emacs package.  Assuming Emacs 24,
+              you'll need to add <code>Marmalade</code> for releases.
+            </p>
+            <pre><code class="lisp">(require 'package)
+(add-to-list 'package-archives
+ '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(package-initialize)</code></pre>
+            <p>
+              The git HEAD is packaged automatically and is available in the
+              <code>MEPLA</code> package repository.
+            </p>
+            <pre><code class="lisp">(add-to-list 'package-archives
+ '("melpa" . "http://melpa.milkbox.net/packages/") t)</code></pre>
+          </section>
+
+          <section>
+            <h2>Install nrepl.el ...</h2>
+            In either case, to actually install <code>nrepl</code>:
+            <pre><code>M-x package-install nrepl</code></pre>
+          </section>
+
+          <section>
+            <h2>Running nrepl.el</h2>
+            <p>Browse to a file in your clojure project an jack-in:</p>
+            <pre><code>M-x nrepl-jack-in</code></pre>
+            <p></p>
+          </section>
+
+          <section>
+            <h2>Running nrepl.el ...</h2>
+            <p>Start an nREPL server and connect to it.</p>
+            <pre><code>lein repl :headless</code></pre>
+            <p>
+              This will announce the port it is running on, which you pass to
+              <code>nrepl</code>
+            </p>
+            <pre><code>M-x nrepl localhost 41045</code></pre>
+            <p></p>
+          </section>
+        </section>
+
+
+        <section>
+          <section>
+            <h2>Ritz</h2>
+            <p>
+            <a href="https://github.com/pallet/ritz">https://github.com/pallet/ritz</a>
+            </p>
+            <p>Started life as a fork of swank-clojure, but is now a very
+            different codebase.</p>
+            <p>Initially was to provide SLDB for Clojure in SLIME.</p>
+            <p>Now refactored to support nREPL.</p>
+            <aside class="notes">
+              Refactored just after reading "Out of the Tar Pit" Ben Moseley,
+              Peter Marks 2006.
+
+              I finally got round to reading this, after assuming for a long
+              time that Rich had of course done the hard work of taking everything
+              of interest and already put it in clojure.
+
+              Contains very interesting suggestions around using relations as your data
+              interface, with no preferred access paths in your API.
+
+              Using a collection of maps is pretty much the same thing.
+
+              Especially when coupled with datalog for queries.
+
+              Maybe Rich did implement everything after all...just not all of it
+              is in clojure (some is in Datomic).
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>Ritz Components</h2>
+            <img src="libs.png" alt="Libs" />
+            <dl class="table-display">
+              <dt>debugger</dt>
+              <dd>A library, independent of UI</dd>
+              <dt>repl-utils</dt>
+              <dd>A low dependency library of functions useful in a repl</dd>
+              <dt>nrepl-middleware</dt>
+              <dd>nREPL middleware for much of repl-utils.</dd>
+            </dl>
+            <aside class="notes">
+              repl-utils has no dependencies on swank or nrepl.
+
+              The debugger library also has no dependencies on swank, nrepl or emacs.
+            </aside>
+          </section>
+          <section>
+            <h2>Ritz Components</h2>
+            <dl class="table-display">
+              <dt>nrepl-codeq</dt>
+              <dd>middleware to support codeq integration</dd>
+              <dt>nrepl-hornetq</dt>
+              <dd>An nrepl server over HornetQ</dd>
+              <dt>nrepl-project</dt>
+              <dd>A project switching middleware</dd>
+            </dl>
+          </section>
+        </section>
+
+        <section>
+          <h2>Ritz Debugger Middleware</h2>
+          <p>Could be used by other clients (eg. VimClojure)</p>
+            break-on-exception
+            invoke-restart
+            frame-eval
+            frame-source
+            frame-locals
+            disassemble-frame
+            <aside class="notes">
+              Most useful for non-jvm clients.
+            </aside>
+        </section>
+
+        <section>
+          <h2>Ritz Middleware</h2>
+          <p>Could be used in any nREPL server</p>
+          javadoc
+          apropos
+          doc
+          describe-symbol
+          complete (simple and fuzzy completion)
+          eval
+          <aside class="notes">
+
+          </aside>
+        </section>
+
+
+        <section>
+          <section>
+            <h2>Install ritz-nrepl.el</h2>
+            Install the <code>ritz-nrepl.el</code> Emacs package:
+            <pre><code>M-x package-install ritz-nrepl</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Break on exception</h2>
+            <p>Examine stack traces before the stack unwinds.Needs to be turned on:</p>
+
+            <pre><code>M-x nrepl-ritz-break-on-exception</code></pre>
+
+            <pre><code class="clojure">user> (/ 1 0)</code></pre>
+
+            <aside class="notes">
+              Being able to examine the call stack and variables is one of the
+              features of SLIME that I was used to from working with Common Lisp.
+              Doing this without unwinding the stack was the main reason I started
+              working on Ritz.
+            </aside>
+          </section>
+
+          <section>
+            <h2>Break on exception - restarts</h2>
+            <p>
+              Filtering of exceptions is via "restarts" displayed as part of the
+              stacktrace.
+            </p>
+
+            <pre><code>Divide by zero
+java.lang.ArithmeticException
+
+Restarts:
+ 0: [CONTINUE] Pass exception to program
+ 1: [ABORT] Abort request.
+ 2: [IGNORE] Do not enter debugger for this exception type
+ 3: [IGNORE-MSG] Do not enter debugger for this exception message
+ 4: [IGNORE-CATCH] Do not enter debugger for exceptions with
+    catch location clojure.lang.Compiler.*
+ 5: [IGNORE-LOC] Do not enter debugger for exceptions with throw
+    location clojure.lang.Numbers.*
+
+Stacktrace:
+  0: clojure.lang.Numbers.divide (Numbers.java:156)
+  1: clojure.lang.Numbers.divide (Numbers.java:3691)
+  2: ritz-conj.example/eval2845 (UNKNOWN:-1)
+            </code></pre>
+
+            <aside class="notes">
+              Clojure obviously doesn't have a condition/restart system like
+              Common Lisp's.  JPDA allows us to approximate it. Different to
+              the interface in CCW/eclipse, etc.
+
+              To see ignored exceptions again we can use the slime-selector.
+
+              In SLIME, any unhandled condition results in the SLDB debugger
+              being invoked. On the JVM, exceptions probably get used much more
+              frequently than conditions however.
+            </aside>
+          </section>
+
+
+
+          <section>
+            <h2>What's caught, and what's not</h2>
+            <p>Any <code>(try ... (finally ..))</code> block means that JPDA
+            considers an exception within that block as caught</p>
+
+            <pre><code>(with-open [f (io/reader f)] ...) </code></pre>
+
+            <p>Makes filtering on caught/uncaught meaningless.</p>
+            <aside class="notes">
+              Debuggers normally expose a notion of caught vs. uncaught exceptions
+              for filtering. Of limited utility in clojure due to JPDA.
+
+              This is why break-on-exception is off by default, and why there
+              are some standard filters installed, to cover some exceptions
+              that always occur, and are harmless.
+
+              The exception filters can be saved in swank.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h2>Jump to source</h2>
+          <p>
+            Linking source code to stack frames requires that the source is on
+            the classpath. The Ritz servers arrange this if the source code is
+            in your local repository.
+          </p>
+
+<pre><code>lein pom
+mvn dependency:sources</code></pre>
+
+        </section>
+
+
+        <section>
+          <section>
+            <h2>Evaluation</h2>
+            <p>
+              You can evaluate an expression within the context of a frame. Just
+              select the frame, and press:
+            </p>
+            <p>'e' and enter an expression to see the result in the message area.</p>
+            <p>'d' and enter an expression to see a pretty printed result in a separate buffer.</p>
+          </section>
+          <section>
+            <h2>Inspector</h2>
+            <p>
+              In ritz-swank, just press <code>Enter</code> on any local variable to
+              pop up the SLIME inspector.
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Locals Clearing</h2>
+            <p>
+              Clojure does something called locals clearing, to avoid holding
+              onto the head of lazy sequences. This can result in locals showing
+              up as nil, even when they aren't really.
+            </p>
+          </section>
+
+          <section>
+            <h2>Locals Clearing - Disable on Compile</h2>
+
+            <p>
+              Use a prefix argument (<code>C-u</code>)to the following commands
+              to disable locals clearing on the code being compiled.
+            </p>
+            <table>
+              <tr> <td>C-c C-c</td><td><code>nrepl-ritz-compile-expression</code></td> </tr>
+            </table>
+            <table>
+              <tr> <td>C-c C-c</td><td><code>slime-compile-defun</code></td> </tr>
+              <tr> <td>C-c C-k</td><td><code>slime-compile-file</code></td> </tr>
+            </table>
+            <aside class="notes">
+              nrepl doesn't have the same support for prefix args on load-file
+              implying debug compilation.
+            </aside>
+          </section>
+
+          <section>
+            <h2>Locals Clearing - Disable Globally</h2>
+            <p>To disable locals clearing globally:</p>
+            <pre><code class="clojure">(alter-var-root #'*compiler-options*
+  assoc :disable-locals-clearing true)</code></pre>
+          </section>
+        </section>
+
+
+        <section>
+          <section>
+            <h2>Breakpoints</h2>
+            <p>SLIME only for now</p>
+            <p>Press <code>C-x C-x C-b</code> to set a breakpoint on any line (of
+            clojure or java).</p>
+            <p>Restarts for Step, Step Over, and Step Out</p>
+          </section>
+        </section>
+
+
+        <section>
+          <h2>Disassembly</h2>
+          <p>Press 'D' on any frame to see the JVM bytecode for the frame</p>
+        </section>
+
+        <section>
+          <h2>Threads</h2>
+          <pre><code>M-x nrepl-ritz-threads</code></pre>
+          <pre class="large">
+============================================================================================
+:id  | :name                     | :status  | :at-breakpoint? | :suspended? | :suspend-count
+============================================================================================
+     | system                    |          |                 |             |
+     |   main                    |          |                 |             |
+1    |     main                  | :wait    | false           | false       | 0
+1569 |     JDI-VM-Control-Thread | :running | false           | true        | 1
+1782 |     msg-pump4905          | :wait    | false           | false       | 0
+5228 |   Reference Handler       | :wait    | false           | false       | 0
+5229 |   Finalizer               | :wait    | false           | false       | 0
+5230 |   Signal Dispatcher       | :running | false           | false       | 0
+============================================================================================
+          </pre>
+        </section>
+
+        <section>
+          <h2>Other Work</h2>
+          <p>
+            <a href="https://github.com/technomancy/limit-break">
+https://github.com/technomancy/limit-break</a>
+          </p>
+          <p>A version of debug-repl for nrepl.</p>
+          <p>The simplest thing that could work and not need any extra setup beyond nrepl.el.</p>
+        </section>
+
+
+        <section>
+          <section>
+            <h2>Direction - Features</h2>
+            <p>Breakpoint management</p>
+            <p>Log Evaluation of expressions at various points in your code.</p>
+            <p></p>
+            <aside class="notes">
+              Please add issue for features you would like to see.
+            </aside>
+          </section>
+          <section>
+            <h2>Direction - Other possibilities</h2>
+            <h3>Scriptable debugging</h3>
+            <p>
+              <a href="http://www.cs.brown.edu/~sk/Publications/Papers/Published/mcskr-dataflow-lang-script-debug-journal/">
+              http://www.cs.brown.edu/~sk/Publications/Papers/Published/mcskr-dataflow-lang-script-debug-journal/</a>
+            </p>
+
+          </section>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+
+      <!-- theme: Reveal.getQueryHash().theme, // available themes are in /css/theme -->
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+      { src: 'lib/js/classList.js',
+        condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/showdown.js',
+        condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js',
+        condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true,
+        callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true,
+        condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true,
+        condition: function() { return !!document.body.classList; } }
+      ]
+      });
+
+    </script>
+
+  </body>
+</html>
