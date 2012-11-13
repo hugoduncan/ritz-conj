@@ -64,7 +64,7 @@
 			<key>Points</key>
 			<array>
 				<string>{202.5, 145.00001216799214}</string>
-				<string>{351.5, 145.00001216799214}</string>
+				<string>{360.5, 145.00001216799214}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -81,12 +81,16 @@
 					</dict>
 					<key>HeadArrow</key>
 					<string>FilledArrow</string>
+					<key>HeadScale</key>
+					<real>0.5</real>
 					<key>Legacy</key>
 					<true/>
 					<key>LineType</key>
 					<integer>1</integer>
 					<key>TailArrow</key>
 					<string>FilledArrow</string>
+					<key>TailScale</key>
+					<real>0.5</real>
 					<key>Width</key>
 					<real>7</real>
 				</dict>
@@ -99,7 +103,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{219.5, 85}, {115, 43}}</string>
+			<string>{{226.5, 85}, {115, 43}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FitText</key>
@@ -163,7 +167,7 @@
 		</dict>
 		<dict>
 			<key>Bounds</key>
-			<string>{{352, 85}, {194, 120}}</string>
+			<string>{{361, 85}, {194, 120}}</string>
 			<key>Class</key>
 			<string>ShapedGraphic</string>
 			<key>FontInfo</key>
@@ -312,7 +316,7 @@ process}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-11-12 16:31:02 +0000</string>
+	<string>2012-11-13 17:07:54 +0000</string>
 	<key>Modifier</key>
 	<string>Hugo Duncan</string>
 	<key>NotesVisible</key>

@@ -72,3 +72,9 @@ dl.table-display
 .reveal section img {
     border: 0;
 }
+
+.reveal section img {
+  background: rgba(255, 255, 255, 0);
+  border: 0px;
+  box-shadow: 0 0 0;
+}

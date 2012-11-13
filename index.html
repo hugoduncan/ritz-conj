@@ -90,8 +90,6 @@ disassemble a frame's code.
           </table>
           <p>Started Ritz to provide Clojure debugging in SLIME via SLDB</p>
 
-
-
           <aside class="notes">
             George started the ball rolling with debug-repl. This was based on
             the insight that we could use clojure's symbol table to look up
@@ -139,6 +137,32 @@ disassemble a frame's code.
           </section>
 
           <section>
+            <h2>load-file</h2>
+            <img src="load-file.png" alt="load-file op" />
+            <p>Works on Clojure and Clojure-script</p>
+            <p>Can be made project specific</p>
+          </section>
+
+          <section>
+            <h2>Leiningen Profiles</h2>
+            <p>Configure your favourite middleware in <code>~/.lein/profiles.clj</code>.</p>
+            <pre><code class="clojure">:user
+  {:repl-options
+    {:nrepl-middleware
+       [ritz.nrepl.middleware.fuzzy-complete/wrap-fuzzy-complete
+        ritz.nrepl.middleware.codeq/wrap-codeq-def]}}</code></pre>
+
+            <p>Or add project specific middleware in project.clj</p>
+            <pre><code class="clojure">:dev
+  {:repl-options
+    {:nrepl-middleware
+       [ritz.nrepl.middleware.javadoc/wrap-javadoc]}}</code></pre>
+            <aside class="notes">
+              Spec your favourite middleware once, use it everywhere.
+            </aside>
+          </section>
+
+          <section>
             <h3>reply</h3>
             <p>Colin Jones @trptcolin
             <a href="https://github.com/trptcolin/reply">https://github.com/trptcolin/reply</a>
@@ -160,6 +184,8 @@ disassemble a frame's code.
           <aside class="notes">
             Probably other clients too. e.g. There was an OCAML client library
             for an early version of nRPEL.
+
+            Tooling is community driven.
           </aside>
         </section>
 
@@ -267,6 +293,11 @@ disassemble a frame's code.
           <section>
             <h2>Ritz Components</h2>
             <img src="libs.png" alt="Libs" />
+            <aside class="notes">
+              repl-utils has no dependencies on swank or nrepl.
+
+              The debugger library also has no dependencies on swank, nrepl or emacs.
+
             <dl class="table-display">
               <dt>debugger</dt>
               <dd>A library, independent of UI</dd>
@@ -275,59 +306,98 @@ disassemble a frame's code.
               <dt>nrepl-middleware</dt>
               <dd>nREPL middleware for much of repl-utils.</dd>
             </dl>
-            <aside class="notes">
-              repl-utils has no dependencies on swank or nrepl.
 
-              The debugger library also has no dependencies on swank, nrepl or emacs.
             </aside>
           </section>
+
           <section>
-            <h2>Ritz Components</h2>
+            <h2>Ritz nRPEL Middleware</h2>
+            <p>Can be used in any nREPL server</p>
+            <dl class="table-display">
+              <dt>javadoc</dt><dd>javadoc for symbol</dd>
+              <dt>apropos</dt><dd>doc for related functions</dd>
+              <dt>doc</dt><dd>Clojure doc for symbol</dd>
+              <dt>describe-symbol</dt><dd>Clojure doc and description</dd>
+              <dt>complete</dt><dd>simple and fuzzy completion</dd>
+              <dt>eval</dt><dd>keep track of source forms</dd>
+            </dl>
+            <aside class="notes">
+            <ul>
+              <li>javadoc</li>
+              <li>apropos</li>
+              <li>doc</li>
+              <li>describe-symbol</li>
+              <li>complete (simple and fuzzy completion)</li>
+              <li>eval</li>
+            </ul>
+            </aside>
+          </section>
+
+
+          <section>
+            <h2>More Ritz Components</h2>
             <dl class="table-display">
               <dt>nrepl-codeq</dt>
-              <dd>middleware to support codeq integration</dd>
+              <dd>Middleware for function history via codeq</dd>
               <dt>nrepl-hornetq</dt>
               <dd>An nrepl server over HornetQ</dd>
-              <dt>nrepl-project</dt>
-              <dd>A project switching middleware</dd>
             </dl>
+          </section>
+
+
+        </section>
+
+        <section>
+          <section>
+            <h2>Ritz Debugger Middleware</h2>
+            <img src="nrepl-jdi.png" alt="nREPL and jdi" />
+            <p>Could be used by other clients (eg. VimClojure)</p>
+            <aside class="notes">
+              Two processes, one for the debugger (talking to the client).
+              Unrecognised ops are passed through the debugger to the user process.
+
+              Most useful for non-jvm clients.
+            </aside>
+          </section>
+          <section>
+            <h2>Ritz Debugger</h2>
+            <img src="debug-ops.png" alt="debug ops" />
+            <aside class="notes">
+              Most useful for non-jvm clients.
+
+              break-on-exception
+              invoke-restart
+              frame-eval
+              frame-source
+              frame-locals
+              disassemble-frame
+            </aside>
           </section>
         </section>
 
         <section>
-          <h2>Ritz Debugger Middleware</h2>
-          <p>Could be used by other clients (eg. VimClojure)</p>
-            break-on-exception
-            invoke-restart
-            frame-eval
-            frame-source
-            frame-locals
-            disassemble-frame
-            <aside class="notes">
-              Most useful for non-jvm clients.
-            </aside>
-        </section>
-
-        <section>
-          <h2>Ritz Middleware</h2>
-          <p>Could be used in any nREPL server</p>
-          javadoc
-          apropos
-          doc
-          describe-symbol
-          complete (simple and fuzzy completion)
-          eval
-          <aside class="notes">
-
-          </aside>
-        </section>
-
-
-        <section>
           <section>
-            <h2>Install ritz-nrepl.el</h2>
+            <h2>Using Ritz nREPL Debugger</h2>
+
+            <h3>Install</h3>
             Install the <code>ritz-nrepl.el</code> Emacs package:
             <pre><code>M-x package-install ritz-nrepl</code></pre>
+
+            <p>Add <code>lein-ritz</code> to you <code>:plugins</code> in
+            <code>~/.lein/profiles.clj</code></p>
+
+            <pre><code>:user {:plugins [[lein-ritz "0.5.2"]]</code></pre>
+          </section>
+          <section>
+            <h2>Using Ritz nREPL Debugger</h2>
+
+            <h3>Run</h3>
+
+            <p>Run repl server:</p>
+            <pre><code>lein ritz-nrepl</code></pre>
+
+            <p>Connect to repl server</p>
+            <pre><code>M-x nrepl</code></pre>
           </section>
         </section>
 
@@ -451,6 +521,10 @@ mvn dependency:sources</code></pre>
               onto the head of lazy sequences. This can result in locals showing
               up as nil, even when they aren't really.
             </p>
+            <p>
+              Can be switched off in 1.4+
+            </p>
+            </p>
           </section>
 
           <section>
@@ -492,7 +566,6 @@ mvn dependency:sources</code></pre>
           </section>
         </section>
 
-
         <section>
           <h2>Disassembly</h2>
           <p>Press 'D' on any frame to see the JVM bytecode for the frame</p>
@@ -517,8 +590,21 @@ mvn dependency:sources</code></pre>
           </pre>
         </section>
 
+
         <section>
-          <h2>Other Work</h2>
+          <h2>Project Support</h2>
+          <p>Reload project to pick up classpath changes.</p>
+          <pre><code>M-x nrepl-ritz-reload-project</code></pre>
+          <p>Switch project</p>
+          <pre><code>M-x nrepl-ritz-load-project</code></pre>
+          <p>Run lein targets on project</p>
+          <pre><code>M-x nrepl-ritz-lein</code></pre>
+          <p>Split out into the <code>nrepl-project</code> project as an nREPL
+          middleware.</p>
+        </section>
+
+        <section>
+          <h2>Related Work</h2>
           <p>
             <a href="https://github.com/technomancy/limit-break">
 https://github.com/technomancy/limit-break</a>
@@ -545,7 +631,9 @@ https://github.com/technomancy/limit-break</a>
               <a href="http://www.cs.brown.edu/~sk/Publications/Papers/Published/mcskr-dataflow-lang-script-debug-journal/">
               http://www.cs.brown.edu/~sk/Publications/Papers/Published/mcskr-dataflow-lang-script-debug-journal/</a>
             </p>
-
+            <aside class="notes">
+              Looking for contributors.
+            </aside>
           </section>
         </section>
 
