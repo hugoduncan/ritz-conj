@@ -2,6 +2,15 @@
     margin-top: 5em;
 }
 
+.reveal p.maintainer {
+    margin-top: 2em;
+}
+
+.reveal ul {
+    margin-bottom: 2em;
+    list-style: none;
+}
+
 .reveal table {
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
@@ -23,6 +32,11 @@
 
 .reveal td, .reveal th  {
     border-top: 1px solid #EEE !important;
+}
+
+.reveal table th  {
+    text-shadow: 0 0 transparent;
+    font-weight: bold;
 }
 
 .reveal table.large-table td {
@@ -51,7 +65,7 @@ dl.table-display
         /* float: left; */
         width: 100%;
         /* width: 520px; */
-        margin: 1em 0;
+        margin: 1em 0 2em 0;
         padding: 0;
         border-bottom: 1px solid #999;
 }

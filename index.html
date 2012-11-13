@@ -18,7 +18,9 @@
     <link rel="stylesheet" href="css/hd.css" />
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="lib/css/zenburn.css" />
+    <link href="css/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="css/shThemeHD.css" rel="stylesheet" type="text/css" />
+    <link href="css/shClojureExtra.css" rel="stylesheet" type="text/css" />
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
@@ -74,17 +76,20 @@ disassemble a frame's code.
           <table>
             <tr>
               <th width="30%"><a href="https://github.com/GeorgeJahad/debug-repl">debug-repl</a></th>
-              <td>George Jahad / @georgejahad (with an insight by Alex Osborne @atosborne).</td>
+              <td>George Jahad / <a href="http://twitter.com/georgejahad">@georgejahad</a>
+              (with an insight by Alex Osborne
+              <a href="http://twitter.com/atosborne">@atosborne</a>)</td>
             </tr>
 
             <tr>
               <th><a href="https://github.com/technomancy/swank-clojure">swank-clojure</a></th>
-              <td>Phil Hagelburg / @technomancy</td>
+              <td><a href="http://technomancy.us/">Phil Hagelburg</a>
+              / <a href="http://twitter.com/technomancy">@technomancy</a></td>
             </tr>
 
             <tr>
               <th><a href="https://github.com/GeorgeJahad/cdt">CDT</a></th>
-              <td>George Jahad / @georgejahad</td>
+              <td>George Jahad / <a href="http://twitter.com/georgejahad">@georgejahad</a></td>
             </tr>
 
           </table>
@@ -116,12 +121,12 @@ disassemble a frame's code.
 
             <p><a href="https://github.com/clojure/tools.nrepl">https://github.com/clojure/tools.nrepl</a></p>
             <img src="nrepl.png" alt="nREPL"/>
-
             <ul>
-              <li>A network protocol (uses bencode)</li>
-              <li>A middleware stack</li>
+              <li>a network protocol (uses bencode),</li>
+              <li>a middleware stack</li>
             </ul>
-            <p>Driven by Chas Emerick / @cemerick </p>
+            <p>Driven by <a href="http://cemerick.com">Chas Emerick</a>
+            / <a href="http://twitter.com/cemerick">@cemerick</a></p>
             <aside class="notes">
               Connects REPL UI with user's clojure process.
 
@@ -146,14 +151,14 @@ disassemble a frame's code.
           <section>
             <h2>Leiningen Profiles</h2>
             <p>Configure your favourite middleware in <code>~/.lein/profiles.clj</code>.</p>
-            <pre><code class="clojure">:user
+            <pre><code class="brush: clojure">:user
   {:repl-options
     {:nrepl-middleware
-       [ritz.nrepl.middleware.fuzzy-complete/wrap-fuzzy-complete
+       [ritz.nrepl.middleware.apropos/wrap-apropos
         ritz.nrepl.middleware.codeq/wrap-codeq-def]}}</code></pre>
 
             <p>Or add project specific middleware in project.clj</p>
-            <pre><code class="clojure">:dev
+            <pre><code class="brush: clojure">:dev
   {:repl-options
     {:nrepl-middleware
        [ritz.nrepl.middleware.javadoc/wrap-javadoc]}}</code></pre>
@@ -192,20 +197,19 @@ disassemble a frame's code.
         <section>
           <section>
             <h2>nrepl.el</h2>
-            <p>
-              nrepl.el is an Emacs client for the nREPL protocol. Developped by
-              King Tim and a large number of contributors.
-            </p>
             <p><a href="https://github.com/kingtim/nrepl.el">
             https://github.com/kingtim/nrepl.el</a></p>
             <p>
-              Promises to be the Emacs client for clojure, unfettered by support
-              of any other lisp.
+              An Emacs client for the nREPL protocol, unfettered by support of
+              any other lisp.
             </p>
+
+            <p class="maintainer">Driven by <a href="https://github.com/kingtim">King Tim</a></p>
 
             <aside class="notes">
               Started by Phil Hagelburg.  Tim picked it up and provided much of
-              the implementation.  Very active project on GitHub.
+              the implementation.  Very active project on GitHub. Large number
+              of contributors.
 
               For us, by us.
 
@@ -220,40 +224,40 @@ disassemble a frame's code.
               nrepl.el is available as an Emacs package.  Assuming Emacs 24,
               you'll need to add <code>Marmalade</code> for releases.
             </p>
-            <pre><code class="lisp">(require 'package)
+            <pre><code class="brush: clojure">(require 'package)
 (add-to-list 'package-archives
- '("marmalade" . "http://marmalade-repo.org/packages/") t)
+ '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)</code></pre>
             <p>
-              The git HEAD is packaged automatically and is available in the
+              The git <code>HEAD</code> is packaged automatically and is available in the
               <code>MEPLA</code> package repository.
             </p>
-            <pre><code class="lisp">(add-to-list 'package-archives
- '("melpa" . "http://melpa.milkbox.net/packages/") t)</code></pre>
+            <pre><code class="brush: clojure">(add-to-list 'package-archives
+ '("melpa" . "http://melpa.milkbox.net/packages/"))</code></pre>
           </section>
 
           <section>
             <h2>Install nrepl.el ...</h2>
             In either case, to actually install <code>nrepl</code>:
-            <pre><code>M-x package-install nrepl</code></pre>
+            <pre><code class="brush: emacs">M-x package-install nrepl</code></pre>
           </section>
 
           <section>
             <h2>Running nrepl.el</h2>
             <p>Browse to a file in your clojure project an jack-in:</p>
-            <pre><code>M-x nrepl-jack-in</code></pre>
+            <pre><code class="brush: emacs">M-x nrepl-jack-in</code></pre>
             <p></p>
           </section>
 
           <section>
             <h2>Running nrepl.el ...</h2>
             <p>Start an nREPL server and connect to it.</p>
-            <pre><code>lein repl :headless</code></pre>
+            <pre><code class="brush: bash">lein repl :headless</code></pre>
             <p>
               This will announce the port it is running on, which you pass to
               <code>nrepl</code>
             </p>
-            <pre><code>M-x nrepl localhost 41045</code></pre>
+            <pre><code class="brush: emacs">M-x nrepl localhost 41045</code></pre>
             <p></p>
           </section>
         </section>
@@ -381,12 +385,12 @@ disassemble a frame's code.
 
             <h3>Install</h3>
             Install the <code>ritz-nrepl.el</code> Emacs package:
-            <pre><code>M-x package-install ritz-nrepl</code></pre>
+            <pre><code class="brush: emacs">M-x package-install ritz-nrepl</code></pre>
 
             <p>Add <code>lein-ritz</code> to you <code>:plugins</code> in
             <code>~/.lein/profiles.clj</code></p>
 
-            <pre><code>:user {:plugins [[lein-ritz "0.5.2"]]</code></pre>
+            <pre><code class="brush: clojure">:user {:plugins [[lein-ritz "0.5.2"]]</code></pre>
           </section>
           <section>
             <h2>Using Ritz nREPL Debugger</h2>
@@ -394,10 +398,10 @@ disassemble a frame's code.
             <h3>Run</h3>
 
             <p>Run repl server:</p>
-            <pre><code>lein ritz-nrepl</code></pre>
+            <pre><code class="brush: bash">lein ritz-nrepl</code></pre>
 
             <p>Connect to repl server</p>
-            <pre><code>M-x nrepl</code></pre>
+            <pre><code class="brush: emacs">M-x nrepl</code></pre>
           </section>
         </section>
 
@@ -406,9 +410,9 @@ disassemble a frame's code.
             <h2>Break on exception</h2>
             <p>Examine stack traces before the stack unwinds.Needs to be turned on:</p>
 
-            <pre><code>M-x nrepl-ritz-break-on-exception</code></pre>
+            <pre><code class="brush: emacs">M-x nrepl-ritz-break-on-exception</code></pre>
 
-            <pre><code class="clojure">user> (/ 1 0)</code></pre>
+            <pre><code>user></code><code class="clojure"> (/ 1 0)</code></pre>
 
             <aside class="notes">
               Being able to examine the call stack and variables is one of the
@@ -425,7 +429,7 @@ disassemble a frame's code.
               stacktrace.
             </p>
 
-            <pre><code>Divide by zero
+            <pre class="large">Divide by zero
 java.lang.ArithmeticException
 
 Restarts:
@@ -442,7 +446,7 @@ Stacktrace:
   0: clojure.lang.Numbers.divide (Numbers.java:156)
   1: clojure.lang.Numbers.divide (Numbers.java:3691)
   2: ritz-conj.example/eval2845 (UNKNOWN:-1)
-            </code></pre>
+</pre>
 
             <aside class="notes">
               Clojure obviously doesn't have a condition/restart system like
@@ -464,7 +468,7 @@ Stacktrace:
             <p>Any <code>(try ... (finally ..))</code> block means that JPDA
             considers an exception within that block as caught</p>
 
-            <pre><code>(with-open [f (io/reader f)] ...) </code></pre>
+            <pre><code class="brush: clojure">(with-open [f (io/reader f)] ...)</code></pre>
 
             <p>Makes filtering on caught/uncaught meaningless.</p>
             <aside class="notes">
@@ -488,7 +492,7 @@ Stacktrace:
             in your local repository.
           </p>
 
-<pre><code>lein pom
+<pre><code class="brush: bash">lein pom
 mvn dependency:sources</code></pre>
 
         </section>
@@ -501,8 +505,10 @@ mvn dependency:sources</code></pre>
               You can evaluate an expression within the context of a frame. Just
               select the frame, and press:
             </p>
-            <p>'e' and enter an expression to see the result in the message area.</p>
-            <p>'d' and enter an expression to see a pretty printed result in a separate buffer.</p>
+            <ul>
+            <li>'e' and enter an expression to see the result in the message area.</li>
+            <li>'d' and enter an expression to see a pretty printed result in a separate buffer.</li>
+            </ul>
           </section>
           <section>
             <h2>Inspector</h2>
@@ -550,7 +556,7 @@ mvn dependency:sources</code></pre>
           <section>
             <h2>Locals Clearing - Disable Globally</h2>
             <p>To disable locals clearing globally:</p>
-            <pre><code class="clojure">(alter-var-root #'*compiler-options*
+            <pre><code class="brush: clojure">(alter-var-root #'*compiler-options*
   assoc :disable-locals-clearing true)</code></pre>
           </section>
         </section>
@@ -573,8 +579,8 @@ mvn dependency:sources</code></pre>
 
         <section>
           <h2>Threads</h2>
-          <pre><code>M-x nrepl-ritz-threads</code></pre>
-          <pre class="large">
+          <pre><code class="brush: emacs">M-x nrepl-ritz-threads</code></pre>
+          <pre class="threads">
 ============================================================================================
 :id  | :name                     | :status  | :at-breakpoint? | :suspended? | :suspend-count
 ============================================================================================
@@ -594,11 +600,11 @@ mvn dependency:sources</code></pre>
         <section>
           <h2>Project Support</h2>
           <p>Reload project to pick up classpath changes.</p>
-          <pre><code>M-x nrepl-ritz-reload-project</code></pre>
+          <pre><code class="brush: emacs">M-x nrepl-ritz-reload-project</code></pre>
           <p>Switch project</p>
-          <pre><code>M-x nrepl-ritz-load-project</code></pre>
+          <pre><code class="brush: emacs">M-x nrepl-ritz-load-project</code></pre>
           <p>Run lein targets on project</p>
-          <pre><code>M-x nrepl-ritz-lein</code></pre>
+          <pre><code class="brush: emacs">M-x nrepl-ritz-lein</code></pre>
           <p>Split out into the <code>nrepl-project</code> project as an nREPL
           middleware.</p>
         </section>
@@ -617,7 +623,8 @@ https://github.com/technomancy/limit-break</a>
         <section>
           <section>
             <h2>Direction - Features</h2>
-            <p>Breakpoint management</p>
+            <p>Parity with ritz-swank</p>
+            <p>Breakpoint</p>
             <p>Log Evaluation of expressions at various points in your code.</p>
             <p></p>
             <aside class="notes">
@@ -664,8 +671,18 @@ https://github.com/technomancy/limit-break</a>
         condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
       { src: 'plugin/markdown/markdown.js',
         condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-      { src: 'plugin/highlight/highlight.js', async: true,
-        callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'js/shCore.js', async: true,
+        callback: function() { x=1; } },
+      { src: 'js/shBrushBash.js', async: true,
+        callback: function() { x=1; } },
+      { src: 'js/shBrushEmacs.js', async: true,
+        callback: function() { x=1; } },
+      { src: 'js/shBrushClojure.js', async: true,
+        callback: function() {
+         SyntaxHighlighter.config.tagName="code";
+         SyntaxHighlighter.defaults['toolbar']=false;
+         SyntaxHighlighter.defaults['gutter']=false;
+         SyntaxHighlighter.all(); } },
       { src: 'plugin/zoom-js/zoom.js', async: true,
         condition: function() { return !!document.body.classList; } },
       { src: 'plugin/notes/notes.js', async: true,
