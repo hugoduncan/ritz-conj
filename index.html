@@ -251,11 +251,11 @@ disassemble a frame's code.
 
           <section>
             <h2>Running nrepl.el ...</h2>
-            <p>Start an nREPL server and connect to it.</p>
+            <p>Start an nREPL server, possibly with <code>lein</code>.</p>
             <pre><code class="brush: bash">lein repl :headless</code></pre>
             <p>
-              This will announce the port it is running on, which you pass to
-              <code>nrepl</code>
+              Connect to the nREPL server. <code>lein</code> announces the port
+              the REPL is running on.
             </p>
             <pre><code class="brush: emacs">M-x nrepl localhost 41045</code></pre>
             <p></p>
@@ -397,18 +397,18 @@ disassemble a frame's code.
 
             <h3>Run</h3>
 
-            <p>Run repl server:</p>
+            <p>Run the ritz nREPL server:</p>
             <pre><code class="brush: bash">lein ritz-nrepl</code></pre>
 
-            <p>Connect to repl server</p>
-            <pre><code class="brush: emacs">M-x nrepl</code></pre>
+            <p>Connect to the repl server, specifying the port:</p>
+            <pre><code class="brush: emacs">M-x nrepl 4005</code></pre>
           </section>
         </section>
 
         <section>
           <section>
             <h2>Break on exception</h2>
-            <p>Examine stack traces before the stack unwinds.Needs to be turned on:</p>
+            <p>Examine stack traces before the stack unwinds.  Needs to be turned on:</p>
 
             <pre><code class="brush: emacs">M-x nrepl-ritz-break-on-exception</code></pre>
 
