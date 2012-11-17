@@ -294,24 +294,6 @@ disassemble a frame's code.
             different codebase.</p>
             <p>Initially was to provide SLDB for Clojure in SLIME.</p>
             <p>Now refactored to support nREPL.</p>
-            <aside class="notes">
-              Refactored just after reading "Out of the Tar Pit" Ben Moseley,
-              Peter Marks 2006.
-
-              I finally got round to reading this, after assuming for a long
-              time that Rich had of course done the hard work of taking everything
-              of interest and already put it in clojure.
-
-              Contains very interesting suggestions around using relations as your data
-              interface, with no preferred access paths in your API.
-
-              Using a collection of maps is pretty much the same thing.
-
-              Especially when coupled with datalog for queries.
-
-              Maybe Rich did implement everything after all...just not all of it
-              is in clojure (some is in Datomic).
-            </aside>
           </section>
 
           <section>
@@ -345,16 +327,6 @@ disassemble a frame's code.
               <dt>complete</dt><dd>simple and fuzzy completion</dd>
               <dt>eval</dt><dd>keep track of source forms</dd>
             </dl>
-            <aside class="notes">
-            <ul>
-              <li>javadoc</li>
-              <li>apropos</li>
-              <li>doc</li>
-              <li>describe-symbol</li>
-              <li>complete (simple and fuzzy completion)</li>
-              <li>eval</li>
-            </ul>
-            </aside>
           </section>
 
 
@@ -387,17 +359,9 @@ disassemble a frame's code.
               different areas within the connection.
             </p>
             <aside class="notes">
-              Refactored just after reading "Out of the Tar Pit" Ben Moseley,
-              Peter Marks 2006.
-
               I finally got round to reading this, after assuming for a long
               time that Rich had of course done the hard work of taking everything
               of interest and already put it in clojure.
-
-              Contains very interesting suggestions around using relations as your data
-              interface, with no preferred access paths in your API.
-
-              Using a collection of maps is pretty much the same thing.
 
               Especially when coupled with datalog for queries.
 
@@ -425,13 +389,6 @@ disassemble a frame's code.
             <img src="debug-ops.png" alt="debug ops" />
             <aside class="notes">
               Most useful for non-jvm clients.
-
-              break-on-exception
-              invoke-restart
-              frame-eval
-              frame-source
-              frame-locals
-              disassemble-frame
             </aside>
           </section>
         </section>
