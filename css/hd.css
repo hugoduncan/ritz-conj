@@ -1,5 +1,48 @@
 .reveal p.talk-repo {
-    margin-top: 5em;
+    margin-top: 7em;
+}
+
+.reveal p.center {
+    text-align: center;
+}
+
+.reveal p.and {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.reveal .slides section.title-page {
+    background-image: url("../tailess-whip-scorpion2.png");
+    background-repeat: no-repeat;
+    background-position: 55% 75%;
+    background-color: transparent;
+}
+
+.reveal .slides section.conclusion {
+    background-image: url("../Ritz_Hotel_sign.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-color: transparent;
+}
+
+.reveal p.small {
+    font-size: 0.5em;
+}
+
+.reveal .center p {
+    text-align: center;
+}
+
+.reveal p {
+    text-align: left;
+}
+
+.reveal h3 {
+    margin-top: 1em;
+}
+
+.reveal section > h3 {
+    margin-top: 0.5em;
 }
 
 .reveal p.maintainer {
@@ -9,6 +52,7 @@
 .reveal ul {
     margin-bottom: 2em;
     list-style: none;
+    /* width: 7%; */
 }
 
 .reveal table {
@@ -53,7 +97,7 @@
 }
 
 .reveal pre.threads {
-    font-size: 0.43em;
+    font-size: 0.40em;
     padding-left: 0em;
     padding-right: 0em;
     margin: 0px;
@@ -105,7 +149,7 @@ dl.table-display
   box-shadow: 0 0 0;
   font-size: 0.8em;
   font-weight: bold;
-  margin: 1em auto 2em auto;
+  margin: 0.5em auto 1em auto;
 }
 
 .syntaxhighlighter  {

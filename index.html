@@ -56,18 +56,18 @@ disassemble a frame's code.
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
 
-        <section>
-          <h1>Clojure Debuggers</h1>
+        <section class="title-page">
+          <h1>Debuggers</h1>
           <h3>Using Ritz to debug Clojure in Emacs</h3>
-          <p>
+          <p class="center">
             <small><a href="http://hugoduncan.org">Hugo Duncan</a> /
             <a href="http://twitter.com/hugoduncan">@hugoduncan</a></small>
           </p>
-
-          <p class="talk-repo">
+          <p class="talk-repo center">
             <a href="https://github.com/hugoduncan/ritz-conj">
             https://github.com/hugoduncan/ritz-conj</a>
           </p>
+
         </section>
 
         <section>
@@ -75,8 +75,8 @@ disassemble a frame's code.
 
           <table>
             <tr>
-              <th width="30%"><a href="https://github.com/GeorgeJahad/debug-repl">debug-repl</a></th>
-              <td>George Jahad / <a href="http://twitter.com/georgejahad">@georgejahad</a>
+              <th width="32%"><a href="https://github.com/GeorgeJahad/debug-repl">debug-repl</a></th>
+              <td>George Jahad <a href="http://twitter.com/georgejahad">@georgejahad</a>
               (with an insight by Alex Osborne
               <a href="http://twitter.com/atosborne">@atosborne</a>)</td>
             </tr>
@@ -84,12 +84,12 @@ disassemble a frame's code.
             <tr>
               <th><a href="https://github.com/technomancy/swank-clojure">swank-clojure</a></th>
               <td><a href="http://technomancy.us/">Phil Hagelburg</a>
-              / <a href="http://twitter.com/technomancy">@technomancy</a></td>
+              <a href="http://twitter.com/technomancy">@technomancy</a></td>
             </tr>
 
             <tr>
               <th><a href="https://github.com/GeorgeJahad/cdt">CDT</a></th>
-              <td>George Jahad / <a href="http://twitter.com/georgejahad">@georgejahad</a></td>
+              <td>George Jahad <a href="http://twitter.com/georgejahad">@georgejahad</a></td>
             </tr>
 
           </table>
@@ -119,13 +119,14 @@ disassemble a frame's code.
           <section>
             <h2>nREPL</h2>
 
-            <p><a href="https://github.com/clojure/tools.nrepl">https://github.com/clojure/tools.nrepl</a></p>
+            <p class="center">
+            <a href="https://github.com/clojure/tools.nrepl">https://github.com/clojure/tools.nrepl</a></p>
             <img src="nrepl.png" alt="nREPL"/>
             <ul>
-              <li>a network protocol (uses bencode),</li>
-              <li>a middleware stack</li>
+              <li><p>transport (socket & bencode)</p></li>
+              <li>middleware stack</li>
             </ul>
-            <p>Driven by <a href="http://cemerick.com">Chas Emerick</a>
+            <p class="center">Driven by <a href="http://cemerick.com">Chas Emerick</a>
             / <a href="http://twitter.com/cemerick">@cemerick</a></p>
             <aside class="notes">
               Connects REPL UI with user's clojure process.
@@ -144,8 +145,11 @@ disassemble a frame's code.
           <section>
             <h2>load-file</h2>
             <img src="load-file.png" alt="load-file op" />
-            <p>Works on Clojure and Clojure-script</p>
-            <p>Can be made project specific</p>
+            <p class="center">Support for Clojure and ClojureScript</p>
+            <aside class="notes">
+              <p>support multiple types of nrepl server</p>
+              <p>Can be made project specific.</p>
+            </aside>
           </section>
 
           <section>
@@ -154,41 +158,49 @@ disassemble a frame's code.
             <pre><code class="brush: clojure">:user
   {:repl-options
     {:nrepl-middleware
-       [ritz.nrepl.middleware.apropos/wrap-apropos
-        ritz.nrepl.middleware.codeq/wrap-codeq-def]}}</code></pre>
+     [ritz.nrepl.middleware.doc/wrap-doc]}}</code></pre>
 
-            <p>Or add project specific middleware in project.clj</p>
+            <p>Or add project specific middleware in <code>project.clj</code></p>
             <pre><code class="brush: clojure">:dev
   {:repl-options
     {:nrepl-middleware
-       [ritz.nrepl.middleware.javadoc/wrap-javadoc]}}</code></pre>
+     [ritz.nrepl.middleware.doc/wrap-doc]}}</code></pre>
             <aside class="notes">
               Spec your favourite middleware once, use it everywhere.
+
+              Not used in CCW.
             </aside>
           </section>
 
           <section>
             <h3>reply</h3>
-            <p>Colin Jones @trptcolin
+            <p class="center">Colin Jones @trptcolin
             <a href="https://github.com/trptcolin/reply">https://github.com/trptcolin/reply</a>
-            Support built into <code>leiningen</code>.
             </p>
 
             <h3>CounterClockWise</h3>
-            <p>Laurent Petit @petitlaurent
+            <p class="center">Laurent Petit @petitlaurent
             <a href="http://code.google.com/p/counterclockwise/wiki/Documentation">
             http://code.google.com/p/counterclockwise</a>.
-            Provides Clojure support in eclipse.
             </p>
 
             <h3>VimClojure</h3>
-            <p>Meikel Brandmeyer @kotarak
+            <p class="center">Meikel Brandmeyer @kotarak
             <a href="https://bitbucket.org/kotarak/vimclojure">VimClojure</a>.
-            Provides Clojure support in <code>vim</code>. Support for nREPL in progress.</p>
+            </p>
+
+            <p class="and">and &hellip;</p>
           </section>
           <aside class="notes">
+            Reply Support built into <code>leiningen</code>.
+
+            CCW Provides Clojure support in eclipse.
+
+            VimClojure provides Clojure support in <code>vim</code>. Support for
+            nREPL in progress.
+
             Probably other clients too. e.g. There was an OCAML client library
-            for an early version of nRPEL.
+            for an early version of nREPL.
 
             Tooling is community driven.
           </aside>
@@ -204,7 +216,7 @@ disassemble a frame's code.
               any other lisp.
             </p>
 
-            <p class="maintainer">Driven by <a href="https://github.com/kingtim">King Tim</a></p>
+            <p class="maintainer">Driven by <a href="https://github.com/kingtim">Tim King</a></p>
 
             <aside class="notes">
               Started by Phil Hagelburg.  Tim picked it up and provided much of
@@ -221,24 +233,28 @@ disassemble a frame's code.
           <section>
             <h2>Install nrepl.el</h2>
             <p>
-              nrepl.el is available as an Emacs package.  Assuming Emacs 24,
-              you'll need to add <code>Marmalade</code> for releases.
+              nrepl.el is available as an Emacs package in <code>Marmalade</code>.
             </p>
             <pre><code class="brush: clojure">(require 'package)
 (add-to-list 'package-archives
- '("marmalade" . "http://marmalade-repo.org/packages/"))
+ '("marmalade"
+   . "http://marmalade-repo.org/packages/"))
 (package-initialize)</code></pre>
             <p>
-              The git <code>HEAD</code> is packaged automatically and is available in the
-              <code>MEPLA</code> package repository.
+              The git <code>HEAD</code> is packaged to <code>MELPA</code>.
             </p>
             <pre><code class="brush: clojure">(add-to-list 'package-archives
- '("melpa" . "http://melpa.milkbox.net/packages/"))</code></pre>
+ '("melpa"
+   . "http://melpa.milkbox.net/packages/"))</code></pre>
+
+ <aside class="notes">
+  Assuming Emacs 24, you'll need to add <code>Marmalade</code> for releases.
+ </aside>
           </section>
 
           <section>
             <h2>Install nrepl.el ...</h2>
-            In either case, to actually install <code>nrepl</code>:
+            <p>In either case, to actually install <code>nrepl</code>:</p>
             <pre><code class="brush: emacs">M-x package-install nrepl</code></pre>
           </section>
 
@@ -263,11 +279,16 @@ disassemble a frame's code.
         </section>
 
 
+        <!--
+             connection as a state object
+             connection mapped to nrepl session
+ -->
+
         <section>
           <section>
             <h2>Ritz</h2>
-            <p>
-            <a href="https://github.com/pallet/ritz">https://github.com/pallet/ritz</a>
+            <p class="center"x>
+              <a href="https://github.com/pallet/ritz">https://github.com/pallet/ritz</a>
             </p>
             <p>Started life as a fork of swank-clojure, but is now a very
             different codebase.</p>
@@ -293,7 +314,6 @@ disassemble a frame's code.
             </aside>
           </section>
 
-
           <section>
             <h2>Ritz Components</h2>
             <img src="libs.png" alt="Libs" />
@@ -307,7 +327,7 @@ disassemble a frame's code.
               <dd>A library, independent of UI</dd>
               <dt>repl-utils</dt>
               <dd>A low dependency library of functions useful in a repl</dd>
-              <dt>nrepl-middleware</dt>
+              <dt>nREPL-middleware</dt>
               <dd>nREPL middleware for much of repl-utils.</dd>
             </dl>
 
@@ -315,7 +335,7 @@ disassemble a frame's code.
           </section>
 
           <section>
-            <h2>Ritz nRPEL Middleware</h2>
+            <h2>Ritz nREPL Middleware</h2>
             <p>Can be used in any nREPL server</p>
             <dl class="table-display">
               <dt>javadoc</dt><dd>javadoc for symbol</dd>
@@ -344,7 +364,7 @@ disassemble a frame's code.
               <dt>nrepl-codeq</dt>
               <dd>Middleware for function history via codeq</dd>
               <dt>nrepl-hornetq</dt>
-              <dd>An nrepl server over HornetQ</dd>
+              <dd>An nREPL server over HornetQ</dd>
             </dl>
           </section>
 
@@ -353,14 +373,51 @@ disassemble a frame's code.
 
         <section>
           <section>
+            <h2>Ritz Debugger</h2>
+            <p>Refactored after reading <q>Out of the Tar Pit</q>, Ben Moseley,
+            Peter Marks 2006.</p>
+              
+            <ul>
+              <li>Isolate mutable state</li>
+              <li>Provide simple data query and update ops</li>
+              <li>No preferred access path</li>
+            </ul>
+            <p>
+              Map for each connection, with assoc and update-in functions for
+              different areas within the connection.
+            </p>
+            <aside class="notes">
+              Refactored just after reading "Out of the Tar Pit" Ben Moseley,
+              Peter Marks 2006.
+
+              I finally got round to reading this, after assuming for a long
+              time that Rich had of course done the hard work of taking everything
+              of interest and already put it in clojure.
+
+              Contains very interesting suggestions around using relations as your data
+              interface, with no preferred access paths in your API.
+
+              Using a collection of maps is pretty much the same thing.
+
+              Especially when coupled with datalog for queries.
+
+              Maybe Rich did implement everything after all...just not all of it
+              is in clojure (some is in Datomic).
+            </aside>
+          </section>
+
+          <section>
             <h2>Ritz Debugger Middleware</h2>
             <img src="nrepl-jdi.png" alt="nREPL and jdi" />
-            <p>Could be used by other clients (eg. VimClojure)</p>
+            <p class="center">Could be used by other (non-emacs) clients.</p>
+            <p class="center">Emacs package for nrepl.el extensions.</p>
             <aside class="notes">
               Two processes, one for the debugger (talking to the client).
               Unrecognised ops are passed through the debugger to the user process.
 
               Most useful for non-jvm clients.
+
+              Could be used in immutant or session
             </aside>
           </section>
           <section>
@@ -384,13 +441,13 @@ disassemble a frame's code.
             <h2>Using Ritz nREPL Debugger</h2>
 
             <h3>Install</h3>
-            Install the <code>ritz-nrepl.el</code> Emacs package:
-            <pre><code class="brush: emacs">M-x package-install ritz-nrepl</code></pre>
+            <p>Install the <code>nrepl-ritz.el</code> Emacs package:</p>
+            <pre><code class="brush: emacs">M-x package-install nrepl-ritz</code></pre>
 
             <p>Add <code>lein-ritz</code> to you <code>:plugins</code> in
             <code>~/.lein/profiles.clj</code></p>
 
-            <pre><code class="brush: clojure">:user {:plugins [[lein-ritz "0.5.2"]]</code></pre>
+            <pre><code class="brush: clojure">:user {:plugins [[lein-ritz "0.6.0"]]</code></pre>
           </section>
           <section>
             <h2>Using Ritz nREPL Debugger</h2>
@@ -488,8 +545,10 @@ Stacktrace:
           <h2>Jump to source</h2>
           <p>
             Linking source code to stack frames requires that the source is on
-            the classpath. The Ritz servers arrange this if the source code is
-            in your local repository.
+            the classpath.
+          </p>
+          <p>
+            The Ritz servers arrange this if the source code is in your local repository.
           </p>
 
 <pre><code class="brush: bash">lein pom
@@ -566,7 +625,7 @@ mvn dependency:sources</code></pre>
           <section>
             <h2>Breakpoints</h2>
             <p>SLIME only for now</p>
-            <p>Press <code>C-x C-x C-b</code> to set a breakpoint on any line (of
+            <p>Press <code>C-c C-x C-b</code> to set a breakpoint on any line (of
             clojure or java).</p>
             <p>Restarts for Step, Step Over, and Step Out</p>
           </section>
@@ -611,7 +670,7 @@ mvn dependency:sources</code></pre>
 
         <section>
           <h2>Related Work</h2>
-          <p>
+          <p class="center">
             <a href="https://github.com/technomancy/limit-break">
 https://github.com/technomancy/limit-break</a>
           </p>
@@ -621,27 +680,44 @@ https://github.com/technomancy/limit-break</a>
 
 
         <section>
-          <section>
+          <section class="center">
             <h2>Direction - Features</h2>
-            <p>Parity with ritz-swank</p>
-            <p>Breakpoint</p>
-            <p>Log Evaluation of expressions at various points in your code.</p>
+            <p>Parity with ritz-swank:</p>
+            <ul>
+              <li>Breakpoints</li>
+              <li>Inspector</li>
+            </ul>
+            <p>Other Ideas:</p>
+            <ul>
+              <li>Log Evaluation of expressions</li>
+              <li>Make the debugger scriptable</li>
+            </ul>
             <p></p>
             <aside class="notes">
+              scriptable via FRP?
+
               Please add issue for features you would like to see.
+
+              Looking for contributors.
             </aside>
           </section>
+
           <section>
             <h2>Direction - Other possibilities</h2>
             <h3>Scriptable debugging</h3>
-            <p>
+            <p class="small">
               <a href="http://www.cs.brown.edu/~sk/Publications/Papers/Published/mcskr-dataflow-lang-script-debug-journal/">
               http://www.cs.brown.edu/~sk/Publications/Papers/Published/mcskr-dataflow-lang-script-debug-journal/</a>
             </p>
             <aside class="notes">
-              Looking for contributors.
             </aside>
           </section>
+        </section>
+
+        <section class="center conclusion">
+          <h2>Conclusion</h2>
+          <p>nREPL middleware provides flexibility.</p>
+          <p>Make Ritz the goto place for middleware and debugger.</p>
         </section>
 
       </div>
