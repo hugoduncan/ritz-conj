@@ -4,17 +4,21 @@
 (comment
   (/ 1 0))
 
-(defn f1 []
+(defn divide-by-zero []
   (let [a 1]
     (/ a 0)))
 
-(comment (f1))
+(comment
+  (divide-by-zero))
 
-(defn f5 []
+
+;;; locals clearing
+(defn local-lazy-seq []
   (let [c (range 10)]
     (/ (first c) 0)))
 
-(comment (f5))
+(comment
+  (local-lazy-seq))
 
 
 ;;; Tracking down errors
@@ -25,28 +29,3 @@
   (ns fred
     (:use
      [clojure.string :only join])))
-
-
-
-
-;; (defn f2 []
-;;   (let [a (map inc (range 1000))]
-;;     (/ (first a) 0)))
-
-;; (comment (f2))
-
-;; ;;; Lazy sequences
-;; (defn f3 []
-;;   (let [a (range 10000)]
-;;     (/ (first a) 0)))
-
-;; (comment (f3))
-
-
-;;; Locals clearing
-;; (defn f4 []
-;;   (let [b (range 10)
-;;         c (map inc b)]
-;;     (f1)))
-
-;; (comment (f4))

@@ -61,11 +61,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -96,7 +96,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
 \f0\fs48 \cf2 \{:status "done"\}}</string>
@@ -112,11 +112,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Helvetica-Bold</string>
@@ -147,7 +147,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
 \f0\b\fs48 \cf2 load-file middleware}</string>
@@ -261,8 +261,8 @@
 			<integer>20</integer>
 			<key>Points</key>
 			<array>
-				<string>{517.96328378335375, 182.96260203973429}</string>
-				<string>{518.01366119366446, 201.50000183838196}</string>
+				<string>{517.96328375442306, 182.96260203973426}</string>
+				<string>{518.01366115631913, 201.50000183838199}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -305,11 +305,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Helvetica-Bold</string>
@@ -340,7 +340,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
 \f0\b\fs48 \cf2 Display success notification}</string>
@@ -356,11 +356,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -395,7 +395,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:op "load-file"\
@@ -465,8 +465,8 @@
 			<integer>11</integer>
 			<key>Points</key>
 			<array>
-				<string>{302.49998914474355, 96.645912256260345}</string>
-				<string>{391.96748339476272, 96.922232998974962}</string>
+				<string>{302.49998914498184, 96.644397268104228}</string>
+				<string>{391.96748343763727, 96.919701542382754}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -657,7 +657,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-11-13 23:19:45 +0000</string>
+	<string>2012-11-17 14:09:48 +0000</string>
 	<key>Modifier</key>
 	<string>Hugo Duncan</string>
 	<key>NotesVisible</key>
@@ -743,7 +743,7 @@
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{250, 245}, {907, 630}}</string>
+		<string>{{67, 54}, {907, 630}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>

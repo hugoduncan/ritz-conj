@@ -450,11 +450,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -476,9 +476,9 @@
 						<key>b</key>
 						<string>0.285464</string>
 						<key>g</key>
-						<string>0.232763</string>
+						<string>0.15014</string>
 						<key>r</key>
-						<string>0.183422</string>
+						<string>0</string>
 					</dict>
 				</dict>
 			</dict>
@@ -489,7 +489,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:value some-value\}}</string>
@@ -505,11 +505,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -531,9 +531,9 @@
 						<key>b</key>
 						<string>0.285464</string>
 						<key>g</key>
-						<string>0.232763</string>
+						<string>0.15014</string>
 						<key>r</key>
-						<string>0.183422</string>
+						<string>0</string>
 					</dict>
 				</dict>
 			</dict>
@@ -544,7 +544,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:op "frame-eval"\
@@ -562,11 +562,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -588,9 +588,9 @@
 						<key>b</key>
 						<string>0.285464</string>
 						<key>g</key>
-						<string>0.232763</string>
+						<string>0.15014</string>
 						<key>r</key>
-						<string>0.183422</string>
+						<string>0</string>
 					</dict>
 				</dict>
 			</dict>
@@ -601,7 +601,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:value (:file \'85 :line \'85)\}}</string>
@@ -617,11 +617,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -643,9 +643,9 @@
 						<key>b</key>
 						<string>0.285464</string>
 						<key>g</key>
-						<string>0.232763</string>
+						<string>0.15014</string>
 						<key>r</key>
-						<string>0.183422</string>
+						<string>0</string>
 					</dict>
 				</dict>
 			</dict>
@@ -656,7 +656,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:op "frame-source"\
@@ -673,11 +673,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -699,9 +699,9 @@
 						<key>b</key>
 						<string>0.285464</string>
 						<key>g</key>
-						<string>0.232763</string>
+						<string>0.15014</string>
 						<key>r</key>
-						<string>0.183422</string>
+						<string>0</string>
 					</dict>
 				</dict>
 			</dict>
@@ -712,7 +712,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:value (:exception \'85)\}}</string>
@@ -728,11 +728,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -754,9 +754,9 @@
 						<key>b</key>
 						<string>0.285464</string>
 						<key>g</key>
-						<string>0.232763</string>
+						<string>0.15014</string>
 						<key>r</key>
-						<string>0.183422</string>
+						<string>0</string>
 					</dict>
 				</dict>
 			</dict>
@@ -767,7 +767,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:op "eval" \
@@ -784,11 +784,11 @@
 				<key>Color</key>
 				<dict>
 					<key>b</key>
-					<string>0.767647</string>
+					<string>1</string>
 					<key>g</key>
-					<string>0.757551</string>
+					<string>1</string>
 					<key>r</key>
-					<string>0.771012</string>
+					<string>1</string>
 				</dict>
 				<key>Font</key>
 				<string>Inconsolata</string>
@@ -810,9 +810,9 @@
 						<key>b</key>
 						<string>0.285464</string>
 						<key>g</key>
-						<string>0.232763</string>
+						<string>0.15014</string>
 						<key>r</key>
-						<string>0.183422</string>
+						<string>0</string>
 					</dict>
 				</dict>
 			</dict>
@@ -823,7 +823,7 @@
 				<key>Text</key>
 				<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
 {\fonttbl\f0\fnil\fcharset0 Inconsolata;}
-{\colortbl;\red255\green255\blue255;\red197\green193\blue196;}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs48 \cf2 \{:op "break-on-exception"\}}</string>
@@ -843,8 +843,8 @@
 			<integer>1</integer>
 			<key>Points</key>
 			<array>
-				<string>{141.49999992628074, 206.0842218355815}</string>
-				<string>{192.00000011002865, 206.1108043525459}</string>
+				<string>{141.49999996296057, 206.04882111808229}</string>
+				<string>{192.00000003667614, 206.06423028350306}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -895,8 +895,8 @@
 			<integer>1</integer>
 			<key>Points</key>
 			<array>
-				<string>{141.49999992628076, 323.91538368281482}</string>
-				<string>{192.00000011003226, 323.88867665759381}</string>
+				<string>{141.49999996296057, 323.9509502116112}</string>
+				<string>{192.00000003667614, 323.93546887212483}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -947,8 +947,8 @@
 			<integer>1</integer>
 			<key>Points</key>
 			<array>
-				<string>{141.50000000036314, 486.54115167573741}</string>
-				<string>{192.00000003703929, 486.55414017340144}</string>
+				<string>{141.50000000000003, 486.52385451241429}</string>
+				<string>{192.00000000000344, 486.531383592895}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -1359,7 +1359,7 @@ process}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-11-14 18:57:19 +0000</string>
+	<string>2012-11-17 12:53:16 +0000</string>
 	<key>Modifier</key>
 	<string>Hugo Duncan</string>
 	<key>NotesVisible</key>
@@ -1445,7 +1445,7 @@ process}</string>
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{181, 162}, {1001, 716}}</string>
+		<string>{{0, 162}, {1001, 716}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -1459,7 +1459,7 @@ process}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{-134, -12}, {866, 577}}</string>
+		<string>{{-135, -12}, {866, 577}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>
